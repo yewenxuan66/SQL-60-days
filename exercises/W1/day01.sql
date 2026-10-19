@@ -16,19 +16,25 @@ USE employees;   -- 多数题用 employees 库；题目里写了 learn.xxx 的�
                  -- 首次做题前先跑一次：datasets/setup_learn_tables.sql
 
 -- 第1题｜探查：查看 employees 表的前 10 行所有列
-
+SELECT * FROM employees LIMIT 10;
 
 -- 第2题｜只查三列：员工的编号、名、入职日期
-
+SELECT emp_no,employees.first_name,hire_date
+FROM employees;
 
 -- 第3题｜别名：查员工的姓和名，把 first_name 显示为 ming，last_name 显示为 xing
-
+SELECT employees.first_name AS ming,employees.last_name AS xing
+FROM employees;
 
 -- 第4题｜条件：查出 1995-01-01（含）以后入职的员工的全部信息
-
+SELECT *
+FROM employees
+WHERE hire_date>='1995-01-01';
 
 -- 第5题｜条件：查出所有女性员工的编号、姓名、入职日期
-
+SELECT emp_no,first_name,last_name,hire_date
+FROM employees
+WHERE gender='F';
 -- ===== 做完之后 =====
 -- 1) 错题记进 notes/99_我的错题本.md（只记错的）
 -- 2) 写 1 条笔记进 notes/W1_*.md
