@@ -16,25 +16,33 @@ USE employees;   -- 多数题用 employees 库；题目里写了 learn.xxx 的�
                  -- 首次做题前先跑一次：datasets/setup_learn_tables.sql
 
 -- 第1题｜查出 1990-01-01（含）以后入职的男性员工的编号、姓名、入职日期
-
+SELECT emp_no,employees.first_name,employees.last_name,employees.hire_date
+FROM employees.employees
+WHERE hire_date>='1990-01-01' AND gender='M';
 
 -- 第2题｜查出部门编号是 d001 或 d007 的所有任职记录（用 OR 写）
-
+SELECT *
+FROM employees.dept_emp
+WHERE dept_id='d001' OR dept_id= 'd007';
 
 -- 第3题｜【陷阱题】下面这句实际查的是什么？先猜，再跑，然后把结果行数写下来
---        SELECT * FROM employees
+--        SELECT * FROM employees.employees
 --        WHERE gender = 'M' OR gender = 'F' AND hire_date >= '1995-01-01';
---        我的猜测：
---        实际行数：
---        实际含义：
+--        我的猜测：所有男性和满足条件的女性
+--        实际行数：132
+--        实际含义：所有男性和满足条件的女性
 
 
 -- 第4题｜把第3题改写成"(男 或 女) 且 1995年后入职"，并写出改写后的行数
-
+SELECT  *
+FROM employees.employees
+WHERE (gender='M' OR gender='F') AND hire_date>'1995-01-01';
 
 -- 第5题｜查出月薪大于 10000 且不超过 15000 的薪资记录（员工编号、月薪、生效日期）
 --        提示：表名是 salaries
-
+SELECT emp_no,salaries.salary,salaries.from_date
+FROM employees.salaries
+WHERE salary>10000 AND salary<=15000;
 -- ===== 做完之后 =====
 -- 1) 错题记进 notes/99_我的错题本.md（只记错的）
 -- 2) 写 1 条笔记进 notes/W1_*.md
